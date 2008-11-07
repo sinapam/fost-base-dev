@@ -10,12 +10,6 @@ then {
 }
 fi
 
-if test ! -e ~/bin
-then {
-    mkdir ~/bin
-}
-fi
-
 if test ! -e ../Boost/install
 then {
     if ! test -e ../Boost
