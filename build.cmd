@@ -9,7 +9,7 @@ IF EXIST ..\Boost\install GOTO gotboost
     cd ..\fost
 :gotboost
 
-IF EXIST OpenSSL GOTO gotopenssl
+IF EXIST ..\OpenSSL GOTO gotopenssl
     svn co svn://svn.felspar.com/external/OpenSSL ..\OpenSSL
 :gotopenssl
 
