@@ -14,5 +14,5 @@ IF EXIST ..\OpenSSL GOTO gotopenssl
 :gotopenssl
 
 ..\bjam -j%NUMBER_OF_PROCESSORS% release --toolset=msvc
-..\dist\bin\ftest -b false ..\dist\lib\fost-core-test-smoke.dll ..\dist\lib\fost-crypto-test-smoke.dll
+..\dist\bin\ftest -b false ..\dist\bin\fost-core-test-smoke.dll ..\dist\bin\fost-crypto-test-smoke.dll
 
