@@ -10,20 +10,16 @@ then {
 }
 fi
 
-if test ! -e ../Boost/install
+if ! test -e ../Boost
 then {
-    if ! test -e ../Boost
-    then {
-        svn co svn://svn.felspar.com/external/Boost ../Boost
-    }
-    fi
+    svn co svn://svn.felspar.com/external/Boost ../Boost
     cd ../Boost
     ./build
     cd ../fost
 }
 fi
 
-if bjam -j`grep -c ^processor /proc/cpuinfo` --toolset=gcc $VARIANTS
+if ../bjam -j`grep -c ^processor /proc/cpuinfo` toolset=gcc $VARIANTS
 then {
     if ../dist/bin/ftest -b false \
         libfost-core-test-smoke.so \
