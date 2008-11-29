@@ -18,6 +18,7 @@ then {
 }
 fi
 
+rm -rf ../dist
 if ./compile $VARIANTS
 then {
     export LD_LIBRARY_PATH=../dist/lib
