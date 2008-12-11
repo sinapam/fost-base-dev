@@ -17,9 +17,9 @@ IF EXIST ..\OpenSSL GOTO gotopenssl
 ..\bjam -j%NUMBER_OF_PROCESSORS% release --toolset=msvc
 
 IF NOT ERRORLEVEL 1 (
-    ..\dist\bin\ftest -b false ..\dist\bin\fost-core-test-smoke.dll ..\dist\bin\fost-crypto-test-smoke.dll ..\dist\bin\fost-schema-test-smoke.dll
+    ..\dist\bin\ftest ..\dist\bin\fost-core-test-smoke.dll ..\dist\bin\fost-crypto-test-smoke.dll ..\dist\bin\fost-schema-test-smoke.dll
 )
 
 IF NOT ERRORLEVEL 1 (
-    ..\dist\bin\fost-schema-test-jsondb-file -b false Cpp\fost-schema-test\jsondb-file.json
+    ..\dist\bin\fost-schema-test-jsondb-file Cpp\fost-schema-test\jsondb-file.json
 )
