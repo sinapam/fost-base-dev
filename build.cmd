@@ -19,7 +19,7 @@ IF EXIST ..\OpenSSL GOTO gotopenssl
 ..\bjam release toolset=msvc
 
 IF NOT ERRORLEVEL 1 (
-    ..\dist\bin\ftest ..\dist\bin\fost-core-test-smoke.dll ..\dist\bin\fost-crypto-test-smoke.dll ..\dist\bin\fost-schema-test-smoke.dll
+    ..\dist\bin\ftest ..\dist\bin\fost-core-test-smoke.dll ..\dist\bin\fost-crypto-test-smoke.dll ..\dist\bin\fost-jsondb-test-smoke.dll ..\dist\bin\fost-schema-test-smoke.dll
 )
 
 IF NOT ERRORLEVEL 1 (
