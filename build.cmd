@@ -25,3 +25,7 @@ IF NOT ERRORLEVEL 1 (
 IF NOT ERRORLEVEL 1 (
     ..\dist\bin\fost-schema-test-jsondb-file Cpp\fost-schema-test\jsondb-file.json
 )
+
+IF NOT ERRORLEVEL 1 (
+    ..\dist\bin\fost-jsondb-test-file
+)
