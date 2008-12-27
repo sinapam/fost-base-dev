@@ -25,7 +25,8 @@ then {
     valgrind --leak-check=full --show-reachable=yes \
         ../dist/bin/ftest -b false \
             libfost-core-test-smoke.so \
-            libfost-crypto-test-smoke.so
+            libfost-crypto-test-smoke.so \
+            libfost-inet-test-smoke.so
 } else {
     exit 1
 }
