@@ -27,6 +27,7 @@ then {
     then {
         valgrind --leak-check=full --show-reachable=yes \
             ../dist/bin/ftest -b false \
+                libfost-jsondb.so \
                 libfost-core-test-smoke.so \
                 libfost-crypto-test-smoke.so \
                 libfost-inet-test-smoke.so \
