@@ -1,15 +1,17 @@
 @svn up .
 @echo off
 
-rmdir /s /q ..\dist
+IF EXIST ..\dist (
+    rmdir /s /q ..\dist
+)
 
 IF EXIST ..\Boost\install GOTO gotboost
     IF EXIST ..\Boost GOTO boostbuild
         svn co svn://svn.felspar.com/external/Boost ..\Boost
     :boostbuild
-    cd ..\Boost
+    pushd ..\Boost
     call build.cmd src
-    cd ..\fost
+    popd
 :gotboost
 
 IF EXIST ..\OpenSSL GOTO gotopenssl
@@ -29,3 +31,15 @@ IF NOT ERRORLEVEL 1 (
 IF NOT ERRORLEVEL 1 (
     ..\dist\bin\fost-jsondb-test-file
 )
+
+
+
+
+
+
+
+
+
+
+
+
