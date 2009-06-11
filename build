@@ -23,23 +23,16 @@ rm -rf ../dist
 if ./compile $VARIANTS
 then {
     export LD_LIBRARY_PATH=../dist/lib
-    if ../dist/bin/fost-core-test-file-io fost-core-test-file-io.txt && \
-            ../dist/bin/fost-schema-test-jsondb-file Cpp/fost-schema-test/jsondb-file.json
+    if ../dist/bin/fost-core-test-file-io fost-core-test-file-io.txt
     then {
         valgrind --leak-check=full --show-reachable=yes \
             ../dist/bin/ftest -b false \
-                libfost-jsondb.so \
-                libfost-cache-test-smoke.so \
                 libfost-core-test-smoke.so \
                 libfost-crypto-test-smoke.so \
-                libfost-inet-test-smoke.so \
-                libfost-schema-test-smoke.so
+                libfost-inet-test-smoke.so
         valgrind --leak-check=full --show-reachable=yes \
             ../dist/bin/fost-core-test-file-io \
                 fost-core-test-file-io.txt
-        valgrind --leak-check=full --show-reachable=yes \
-            ../dist/bin/fost-schema-test-jsondb-file \
-                Cpp/fost-schema-test/jsondb-file.json
     } else {
         exit 1
     }
