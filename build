@@ -13,9 +13,16 @@ fi
 if ! test -e ../Boost
 then {
     svn co http://svn.felspar.com/external/Boost ../Boost
-    cd ../Boost
-    ./build
-    cd ../fost
+    if ! test -e ../Boost
+    then {
+        echo Failed to fetch Boost
+        exit 1
+    } else {
+        cd ../Boost
+        ./build
+        cd ../fost-base
+    }
+    fi
 }
 fi
 
