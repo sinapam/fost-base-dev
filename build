@@ -12,7 +12,7 @@ fi
 
 if ! test -e ../Boost
 then {
-    svn co svn://svn.felspar.com/external/Boost ../Boost
+    svn co http://svn.felspar.com/external/Boost ../Boost
     cd ../Boost
     ./build
     cd ../fost
