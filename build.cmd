@@ -7,7 +7,7 @@ IF EXIST ..\dist (
 
 IF EXIST ..\Boost\install GOTO gotboost
     IF EXIST ..\Boost GOTO boostbuild
-        svn co svn://svn.felspar.com/external/Boost ..\Boost
+        svn co http://svn.felspar.com/external/Boost ..\Boost
     :boostbuild
     pushd ..\Boost
     call build.cmd src
@@ -15,7 +15,7 @@ IF EXIST ..\Boost\install GOTO gotboost
 :gotboost
 
 IF EXIST ..\OpenSSL GOTO gotopenssl
-    svn co svn://svn.felspar.com/external/OpenSSL ..\OpenSSL
+    svn co http://svn.felspar.com/external/OpenSSL ..\OpenSSL
 :gotopenssl
 
 call compile.cmd %*
