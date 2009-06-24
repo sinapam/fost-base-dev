@@ -36,6 +36,7 @@ then {
             ../dist/bin/ftest -b false \
                 libfost-core-test-smoke.so \
                 libfost-crypto-test-smoke.so \
+                libfost-datetime-test-smoke.so \
                 libfost-inet-test-smoke.so
         valgrind --leak-check=full --show-reachable=yes \
             ../dist/bin/fost-core-test-file-io \
