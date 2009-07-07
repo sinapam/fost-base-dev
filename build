@@ -30,6 +30,9 @@ rm -rf ../dist
 if ./compile $VARIANTS
 then {
     export LD_LIBRARY_PATH=../dist/lib
+    export DYLD_LIBRARY_PATH=../dist/lib
+    export LANG=C
+# You can install valgrind from http://valgrind.org/downloads/repository.html
     if ../dist/bin/fost-core-test-file-io fost-core-test-file-io.txt
     then {
         valgrind --leak-check=full --show-reachable=yes \
