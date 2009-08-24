@@ -19,7 +19,3 @@ IF EXIST ..\OpenSSL GOTO gotopenssl
 :gotopenssl
 
 call compile.cmd %*
-
-IF NOT ERRORLEVEL 1 (
-    ..\dist\bin\fost-core-test-file-io fost-core-test-file-io.txt
-)
