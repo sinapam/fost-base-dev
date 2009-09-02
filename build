@@ -13,33 +13,33 @@ fi
 if ! test -e ../Boost
 then {
     svn co http://svn.felspar.com/external/Boost ../Boost
-    cd ../Boost
-    ./build
-    cd ../fost
+    if ! test -e ../Boost
+    then {
+        echo Failed to fetch Boost
+        exit 1
+    } else {
+        cd ../Boost
+        ./build
+        cd ../fost-base
+    }
+    fi
 }
 fi
 
-rm -rf ../dist
 if ./compile $VARIANTS
 then {
     export LD_LIBRARY_PATH=../dist/lib
     export DYLD_LIBRARY_PATH=../dist/lib
     export LANG=C
 # You can install valgrind from http://valgrind.org/downloads/repository.html
-    if ../dist/bin/fost-core-test-file-io fost-core-test-file-io.txt
-    then {
-        valgrind --leak-check=full --show-reachable=yes \
-            ../dist/bin/ftest -b false \
-                libfost-core-test-smoke.so \
-                libfost-crypto-test-smoke.so \
-                libfost-inet-test-smoke.so
-        valgrind --leak-check=full --show-reachable=yes \
-            ../dist/bin/fost-core-test-file-io \
-                fost-core-test-file-io.txt
-    } else {
-        exit 1
-    }
-    fi
+    valgrind --leak-check=full --show-reachable=yes \
+        ../dist/bin/ftest -b false \
+            libfost-core-test-smoke.so \
+            libfost-crypto-test-smoke.so \
+            libfost-datetime-test-smoke.so
+    #valgrind --leak-check=full --show-reachable=yes \
+    #    ../dist/bin/fost-core-test-file-io \
+    #        fost-core-test-file-io.txt
 } else {
     exit 1
 }
