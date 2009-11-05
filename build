@@ -42,6 +42,7 @@ then {
     export LANG=C
 # You can install valgrind from http://valgrind.org/downloads/repository.html
     valgrind --leak-check=full --show-reachable=yes \
+	--auto-run-dsymutil=yes \
         ../dist/bin/ftest -b false \
             libfost-core-test-smoke.$DLL \
             libfost-crypto-test-smoke.$DLL \
