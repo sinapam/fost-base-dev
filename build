@@ -37,7 +37,7 @@ else {
 }
 fi
 
-if ./compile $VARIANTS
+if ./compile fost tests $VARIANTS
 then {
     export LD_LIBRARY_PATH=../dist/lib
     export DYLD_LIBRARY_PATH=../dist/lib
