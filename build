@@ -26,17 +26,29 @@ then {
 }
 fi
 
-if ./compile $VARIANTS
+if test -e /proc/
+then {
+    DLL=so
+    VALGRIND_OPTS=
+}
+else {
+    DLL=dylib
+    VALGRIND_OPTS=--auto-run-dsymutil=yes
+}
+fi
+
+if ./compile fost tests $VARIANTS
 then {
     export LD_LIBRARY_PATH=../dist/lib
     export DYLD_LIBRARY_PATH=../dist/lib
     export LANG=C
 # You can install valgrind from http://valgrind.org/downloads/repository.html
     valgrind --leak-check=full --show-reachable=yes \
+        $VALGRIND_OPTS \
         ../dist/bin/ftest -b false \
-            libfost-core-test-smoke.so \
-            libfost-crypto-test-smoke.so \
-            libfost-datetime-test-smoke.so
+            libfost-core-test-smoke.$DLL \
+            libfost-crypto-test-smoke.$DLL \
+            libfost-datetime-test-smoke.$DLL
     #valgrind --leak-check=full --show-reachable=yes \
     #    ../dist/bin/fost-core-test-file-io \
     #        fost-core-test-file-io.txt
