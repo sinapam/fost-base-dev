@@ -7,3 +7,6 @@
 [submodule "OpenSSL"]
 	path = OpenSSL
 	url = git@github.com:KayEss/fost-openssl.git
+[submodule "fost-base"]
+	path = fost-base
+	url = git@github.com:KayEss/fost-base.git
