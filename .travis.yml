@@ -19,3 +19,7 @@ install:
 
 script:
     - ./build toolset=$CC -q
+
+matrix:
+    allow_failures:
+        - compiler: gcc
