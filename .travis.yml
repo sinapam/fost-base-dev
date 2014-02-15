@@ -11,6 +11,7 @@ before_install:
 
 install:
     - sudo apt-get install libboost-all-dev
+    - Boost/install $(lsb_release -cs)
 
 script:
     - ./build
