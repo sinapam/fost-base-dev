@@ -15,7 +15,7 @@ before_install:
 
 install:
     - sudo apt-get install libboost-all-dev libbz2-dev libssl-dev python-dev uuid-dev
-    - if [ "$CXX" = "g++" ]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; sudo apt-get update; sudo apt-get install -qq g++-4.8; echo "using gcc : 4.8 : g++-4.8 ;" > user-config.jam; fi
+    - if [ "$CXX" = "g++" ]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; sudo apt-get update; sudo apt-get install -qq g++-4.8; echo "using gcc &#58; 4.8 &#58; g++-4.8 ;" > user-config.jam; fi
     - Boost/install $(lsb_release -cs)
 
 script:
