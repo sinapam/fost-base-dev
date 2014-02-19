@@ -14,13 +14,12 @@ before_install:
     - git submodule update
 
 install:
-    - export COMPILER=$CC
     - sudo apt-get install libboost-all-dev libbz2-dev libssl-dev python-dev uuid-dev
-    - if [ "$CXX" = "g++" ]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; sudo apt-get update; sudo apt-get install -qq g++-4.8; export CXX="g++-4.8" CC="gcc-4.8"; fi
+    - if [ "$CXX" = "g++" ]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; sudo apt-get update; sudo apt-get install -qq g++-4.8; echo "using gcc : 4.8 : g++-4.8 ;" > user-config.jam; fi
     - Boost/install $(lsb_release -cs)
 
 script:
-    - ./build toolset=$COMPILER -q
+    - ./build toolset=$CC -q
 
 matrix:
     allow_failures:
