@@ -18,7 +18,7 @@ install:
     - if [ "$CXX" = "g++" ]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; fi
     - if [ "$CXX" = "g++" ]; then sudo apt-get update; fi
     - if [ "$CXX" = "g++" ]; then sudo apt-get install g++-4.8; fi
-    - if [ "$CXX" = "g++" ]; then echo "using gcc \: 4.8 \: g++-4.8 ;" > ~/user-config.jam; fi
+    - 'if [ "$CXX" = "g++" ]; then echo "using gcc : 4.8 : g++-4.8 ;" > ~/user-config.jam; fi'
     - Boost/install $(lsb_release -cs)
 
 script:
