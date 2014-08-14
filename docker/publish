@@ -12,7 +12,7 @@ sudo iptables -C $IPRULE || sudo iptables -A $IPRULE
 # Make sure we have the latest source image
 sudo docker pull racker/precise-with-updates
 
-for BUILD in builder; do
+for BUILD in runtime builder; do
     sudo docker build -t kayess/fost-$BUILD $BUILD
     sudo docker push kayess/fost-$BUILD
 done
