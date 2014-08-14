@@ -14,4 +14,4 @@ To use the builder environment to perform builds you can use a docker command li
 
     sudo docker run -v $(pwd):/src -it kayess/fost-builder fost-build fost-base/compile release
 
-This will do a release build of the `fost-base` project files. They will end up in the d`ist-docker` folder.
+This will do a release build of the `fost-base` project files. They will end up in the `dist-docker` folder.
