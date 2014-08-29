@@ -1,4 +1,4 @@
-FROM kayess/fost-minit:trusty
+FROM kayess/fost-updated:trusty
 MAINTAINER Kirit Saelensminde
 
 RUN \
