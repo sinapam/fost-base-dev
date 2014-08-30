@@ -17,7 +17,7 @@ function dockerize {
         sed -i s/:latest/:$2/ $1/Dockerfile
         sudo docker build -t kayess/fost-$1:$2 $1
     fi
-    # sudo docker push kayess/fost-$1
+    sudo docker push kayess/fost-$1:$2
 }
 
 for RELEASE in precise trusty; do
@@ -45,4 +45,5 @@ done
 
 for IMAGE in updated runtime builder minit; do
     sudo docker tag kayess/fost-$IMAGE:$RELEASE kayess/fost-$IMAGE:latest
+    sudo docker push kayess/fost-$IMAGE:latest
 done
