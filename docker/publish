@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+SRC=$(pwd)/$(dirname $0)
 cd $(dirname $0)
 
 set -ex
@@ -9,10 +10,39 @@ sudo sysctl net.ipv4.ip_forward=1
 IPRULE="PREROUTING -t nat -p tcp --dport 3142 -j DNAT --to-destination $(host apt-cacher | grep -o "[0-9]*.[0-9]*.[0-9]*.[0-9]*$"):3142"
 sudo iptables -C $IPRULE || sudo iptables -A $IPRULE
 
-# Make sure we have the latest source image
-sudo docker pull racker/precise-with-updates
+function dockerize {
+    if [ -a $1-$2 ]; then
+        sudo docker build -t kayess/fost-$1:$2 $1-$2
+    else
+        sed -i s/:latest/:$2/ $1/Dockerfile
+        sudo docker build -t kayess/fost-$1:$2 $1
+    fi
+    # sudo docker push kayess/fost-$1
+}
 
-for BUILD in runtime builder; do
-    sudo docker build -t kayess/fost-$BUILD $BUILD
-    sudo docker push kayess/fost-$BUILD
+for RELEASE in precise trusty; do
+    # Copy this lot into a temp folder so we can make changes
+    DIR=$(mktemp -d)
+    cp -r $SRC/* $DIR/
+    cd $DIR
+
+    # Make sure we have the latest source images
+    # sudo docker pull ubuntu:$RELEASE
+
+    for BUILD in updated runtime builder; do
+        dockerize $BUILD $RELEASE
+    done
+
+    # Build minit.c for the first container
+    sudo docker run -it --rm=true \
+            -v $(pwd)/minit:/src \
+            kayess/fost-builder:$RELEASE \
+        gcc -O2 -o minit minit.c
+    dockerize minit $RELEASE
+
+    rm -rf $DIR
+done
+
+for IMAGE in updated runtime builder minit; do
+    sudo docker tag kayess/fost-$IMAGE:$RELEASE kayess/fost-$IMAGE:latest
 done
