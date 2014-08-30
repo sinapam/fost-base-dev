@@ -1,4 +1,4 @@
-FROM ubuntu:precise
+FROM ubuntu:latest
 MAINTAINER Kirit Saelensminde
 
 # Make ischroot generally return true -- this stops a number of apt errors
