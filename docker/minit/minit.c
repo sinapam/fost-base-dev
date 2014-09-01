@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 
-int main() {
+int main(int argc, char *argv[], char *env[]) {
     sigset_t set;
     int status;
 
@@ -27,5 +27,9 @@ int main() {
     sigprocmask(SIG_UNBLOCK, &set, 0);
     setsid();
     setpgid(0, 0);
-    return execve("/etc/rc", (char *[]){ "/etc/rc", 0 }, (char *[]){ 0 });
+    if ( argc > 1 ) {
+        return execve(argv[1], argv + 1, env);
+    } else {
+        return execve("/etc/rc", (char *[]){ "/etc/rc", 0 }, env);
+    }
 }
