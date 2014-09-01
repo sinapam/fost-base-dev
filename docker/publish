@@ -33,7 +33,7 @@ for RELEASE in precise trusty; do
         dockerize $BUILD $RELEASE
     done
 
-    # Build minit.c for the first container
+    # Build minit.c for the fost-minit container
     sudo docker run -it --rm=true \
             -v $(pwd)/minit:/src \
             kayess/fost-builder:$RELEASE \
