@@ -28,7 +28,7 @@ int main(int argc, char *argv[], char *env[]) {
                 exit(status);
             }
         }
-    } else {
+    } else if ( child < 0 ) {
         printf("fork failed\n");
         exit(EXIT_FAILURE);
     }
