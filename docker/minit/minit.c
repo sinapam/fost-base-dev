@@ -6,6 +6,9 @@
 #include <signal.h>
 #include <unistd.h>
 
+#include <stdlib.h> // exit
+#include <stdio.h> // printf
+
 
 int main(int argc, char *argv[], char *env[]) {
     sigset_t set;
@@ -36,7 +39,7 @@ int main(int argc, char *argv[], char *env[]) {
     if ( argc > 1 ) {
         execve(argv[1], argv + 1, env);
         printf("execve failed\n");
-        exit(EXIT_FAILURE);
+        exit(255);
     } else {
         return execve("/etc/rc", (char *[]){ "/etc/rc", 0 }, env);
     }
