@@ -1,4 +1,4 @@
-FROM kayess/fost-runtime:latest
+FROM kayess/ubuntu-updated:latest
 MAINTAINER Kirit Saelensminde
 
 WORKDIR /src

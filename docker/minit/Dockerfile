@@ -1,4 +1,4 @@
-FROM kayess/fost-updated:latest
+FROM kayess/ubuntu-updated:latest
 MAINTAINER Kirit Saelensminde
 
 ADD minit /sbin/minit

@@ -1,4 +1,4 @@
-FROM kayess/fost-updated:precise
+FROM kayess/minit:precise
 MAINTAINER Kirit Saelensminde
 
 RUN \
