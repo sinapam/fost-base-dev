@@ -12,12 +12,12 @@ sudo iptables -C $IPRULE || sudo iptables -A $IPRULE
 
 function dockerize {
     if [ -a $1-$2 ]; then
-        sudo docker build -t kayess/fost-$1:$2 $1-$2
+        sudo docker build -t kayess/$1:$2 $1-$2
     else
         sed -i s/:latest/:$2/ $1/Dockerfile
-        sudo docker build -t kayess/fost-$1:$2 $1
+        sudo docker build -t kayess/$1:$2 $1
     fi
-    sudo docker push kayess/fost-$1:$2
+    # sudo docker push kayess/$1:$2
 }
 
 for RELEASE in precise trusty; do
@@ -27,23 +27,29 @@ for RELEASE in precise trusty; do
     cd $DIR
 
     # Make sure we have the latest source images
-    # sudo docker pull ubuntu:$RELEASE
+    sudo docker pull ubuntu:$RELEASE
 
-    for BUILD in updated runtime builder; do
+    # Build the two base images
+    for BUILD in ubuntu-updated fost-builder; do
         dockerize $BUILD $RELEASE
     done
 
-    # Build minit.c for the fost-minit container
+    # Build minit.c for the minit container
     sudo docker run -it --rm=true \
             -v $(pwd)/minit:/src \
             kayess/fost-builder:$RELEASE \
         gcc -O2 -o minit minit.c
     dockerize minit $RELEASE
 
+    # Build additional images
+    for BUILD in fost-runtime; do
+        dockerize $BUILD $RELEASE
+    done
+
     rm -rf $DIR
 done
 
-for IMAGE in updated runtime builder minit; do
-    sudo docker tag kayess/fost-$IMAGE:$RELEASE kayess/fost-$IMAGE:latest
-    sudo docker push kayess/fost-$IMAGE:latest
+for IMAGE in ubuntu-updated fost-builder minit fost-runtime; do
+    sudo docker tag kayess/$IMAGE:$RELEASE kayess/$IMAGE:latest
+    # sudo docker push kayess/$IMAGE:latest
 done
