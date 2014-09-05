@@ -17,7 +17,7 @@ function dockerize {
         sed -i s/:latest/:$2/ $1/Dockerfile
         sudo docker build -t kayess/$1:$2 $1
     fi
-    # sudo docker push kayess/$1:$2
+    sudo docker push kayess/$1:$2
 }
 
 for RELEASE in precise trusty; do
@@ -51,5 +51,5 @@ done
 
 for IMAGE in ubuntu-updated fost-builder minit fost-runtime; do
     sudo docker tag kayess/$IMAGE:$RELEASE kayess/$IMAGE:latest
-    # sudo docker push kayess/$IMAGE:latest
+    sudo docker push kayess/$IMAGE:latest
 done
