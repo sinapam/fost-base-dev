@@ -7,7 +7,7 @@ set -ex
 # Ensure IP forwarding is enabled
 sudo sysctl net.ipv4.ip_forward=1
 # Set up port forwarding for 3242 to apt-cacher
-IPRULE="PREROUTING -t nat -p tcp --dport 3142 -j DNAT --to-destination $(host apt-cacher | grep -o "[0-9]*.[0-9]*.[0-9]*.[0-9]*$"):3142"
+IPRULE="PREROUTING -t nat -p tcp --dport 3142 -j DNAT --to-destination $(host apt-cacher | grep -o "[0-9]*.[0-9]*.[0-9]*.[0-9]*$" | head -n 1):3142"
 sudo iptables -C $IPRULE || sudo iptables -A $IPRULE
 
 function dockerize {
