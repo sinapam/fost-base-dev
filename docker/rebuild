@@ -34,12 +34,19 @@ for RELEASE in precise trusty; do
         dockerize $BUILD $RELEASE
     done
 
-    # Build minit.c for the minit container
+    # Build minit.c for the minit container, then dockerize it
     sudo docker run -it --rm=true \
             -v $(pwd)/minit:/src \
             kayess/fost-builder:$RELEASE \
         gcc -O2 -o minit minit.c
     dockerize minit $RELEASE
+    # Build minit.c for the minit-restart container, then dockerize it
+    cp minit/minit.c minit-restart/
+    sudo docker run -it --rm=true \
+            -v $(pwd)/minit-restart:/src \
+            kayess/fost-builder:$RELEASE \
+        gcc -DRESTART -O2 -o minit minit.c
+    dockerize minit-restart $RELEASE
 
     # Build additional images
     for BUILD in fost-runtime; do
@@ -49,7 +56,7 @@ for RELEASE in precise trusty; do
     rm -rf $DIR
 done
 
-for IMAGE in ubuntu-updated fost-builder minit fost-runtime; do
+for IMAGE in ubuntu-updated fost-builder minit minit-restart fost-runtime; do
     sudo docker tag kayess/$IMAGE:$RELEASE kayess/$IMAGE:latest
     sudo docker push kayess/$IMAGE:latest
 done
