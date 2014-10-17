@@ -46,6 +46,7 @@ int main(int argc, char *argv[], char *env[]) {
     for ( ;; ) {
         if ( wait(&status) == child ) {
 #ifdef RESTART
+            sleep(1);
             child = execute(&set, argv[1], argv + 1, env);
 #else
             exit(status);
