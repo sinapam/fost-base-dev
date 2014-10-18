@@ -16,7 +16,9 @@ int child = 0;
 
 /* Signal handler passes signal to child */
 static void sig_handler(int sig) {
+    int status;
     kill(child, sig);
+    waitpid(child, &status, 0);
     exit(0);
 }
 
