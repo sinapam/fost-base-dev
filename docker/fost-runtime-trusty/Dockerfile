@@ -1,4 +1,4 @@
-FROM kayess/minit:trusty
+FROM kayess/minit-restart:trusty
 MAINTAINER Kirit Saelensminde
 
 RUN \
