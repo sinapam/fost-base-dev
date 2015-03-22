@@ -57,6 +57,6 @@ for RELEASE in precise trusty; do
 done
 
 for IMAGE in ubuntu-updated fost-builder minit minit-restart fost-runtime; do
-    sudo docker tag kayess/$IMAGE:$RELEASE kayess/$IMAGE:latest
+    sudo docker tag -f kayess/$IMAGE:$RELEASE kayess/$IMAGE:latest
     sudo docker push kayess/$IMAGE:latest
 done
