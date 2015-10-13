@@ -2,6 +2,8 @@ FROM kayess/minit-restart:precise
 MAINTAINER Kirit Saelensminde
 
 RUN \
-    apt-get install -y libboost-system1.46.1 libboost-filesystem1.46.1 \
-        libboost-regex1.46.1 libboost-thread1.46.1 libboost-date-time1.46.1 && \
+    apt-get install -y python-software-properties && \
+    add-apt-repository ppa:ubuntu-toolchain-r/test && \
+    apt-get update && \
+    apt-get dist-upgrade -y \
     apt-get clean
