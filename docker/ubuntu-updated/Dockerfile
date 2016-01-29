@@ -10,7 +10,7 @@ ENV INITRD No
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN \
-    echo 'Acquire::http::Proxy "http://172.17.42.1:3142/";' > /etc/apt/apt.conf.d/cache && \
+    echo 'Acquire::http::Proxy "http://172.17.0.1:3142/";' > /etc/apt/apt.conf.d/cache && \
     apt-get update && \
     apt-get install -y apt-utils && \
     apt-get dist-upgrade -y && \
