@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
+set -ex
+
 SRC=$(pwd)/$(dirname $0)
 cd $(dirname $0)
-
-set -ex
 
 # Ensure IP forwarding is enabled
 sudo sysctl net.ipv4.ip_forward=1
@@ -20,7 +20,7 @@ function dockerize {
     sudo docker push kayess/$1:$2
 }
 
-for RELEASE in precise trusty; do
+for RELEASE in precise trusty vivid; do
     # Copy this lot into a temp folder so we can make changes
     DIR=$(mktemp -d)
     cp -r $SRC/* $DIR/
