@@ -10,7 +10,7 @@ RUN \
     add-apt-repository ppa:h-rayflood/llvm-upper && \
     apt-get update && \
     apt-get install -y lsb-release wget g++-4.9 clang++-3.6 \
-        python-dev uuid-dev libbz2-dev libssl-dev && \
+        python-dev uuid-dev libbz2-dev libssl-dev libpq-dev && \
     apt-get clean && \
     cd /usr/bin && \
     rm gcc cpp && \

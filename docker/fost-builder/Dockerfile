@@ -5,7 +5,7 @@ WORKDIR /src
 
 RUN \
     apt-get install -y lsb-release wget \
-        g++ clang libboost-all-dev uuid-dev libbz2-dev libssl-dev && \
+        g++ clang libboost-all-dev uuid-dev libbz2-dev libssl-dev libpq-dev && \
     apt-get clean
 
 ADD fost-build /usr/local/bin/fost-build
