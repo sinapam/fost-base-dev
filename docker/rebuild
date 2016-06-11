@@ -20,7 +20,7 @@ function dockerize {
     sudo docker push kayess/$1:$2
 }
 
-for RELEASE in precise trusty vivid; do
+for RELEASE in precise trusty vivid wily; do
     # Copy this lot into a temp folder so we can make changes
     DIR=$(mktemp -d)
     cp -r $SRC/* $DIR/
